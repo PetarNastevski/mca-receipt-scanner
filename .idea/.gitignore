@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+*.iml
+# Datasource local storage ignored files
+/../../../../../../../:\Users\petar\Desktop\git\receipt-scanner-mca\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
