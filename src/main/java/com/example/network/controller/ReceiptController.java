@@ -42,9 +42,9 @@ public class ReceiptController {
 
     private void printReceipt(List<Product> products) {
 
-        Map<Boolean, List<Product>> productsGrouped = products.stream()
-                .collect(Collectors.groupingBy(Product::isDomestic,
-                        Collectors.mapping(Function.identity(),
+        Map<Boolean, List<Product>> productsGrouped = products.stream()           //group products by domestic value and
+                .collect(Collectors.groupingBy(Product::isDomestic,                // sort each group alphabetically
+                        Collectors.mapping(Function.identity(),                    // output {false: [Banana], true: [Apple, Tomato]}
                                 Collectors.collectingAndThen(Collectors.toList(),
                                         e -> e.stream().sorted(Comparator.comparing(Product::getName))
                                                 .collect(Collectors.toList())))));
@@ -53,8 +53,8 @@ public class ReceiptController {
         int domesticCount = 0, importedCount = 0;
         double domesticCost = 0.0, importedCost = 0.0;
         System.out.println(". Domestic");
-        for (Product p: productsGrouped.get(true)) {
-            p.setDescription(StringUtils.abbreviate(p.getDescription(), 30));
+        for (Product p: productsGrouped.get(true)) {    //iterate over domestic products
+            p.setDescription(StringUtils.abbreviate(p.getDescription(), 30));  //truncate desc if longer than 30 characters
             System.out.println(p);
             domesticCost += p.getPrice();
             domesticCount += 1;
